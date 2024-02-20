@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block title %}Update Blood | Hospital {% endblock %}
+{%block content %} {% include 'main_nav.html' %} {% load crispy_forms_tags %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Update Blood</h5>
+        {% crispy form %}
+      </div>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+  const blood_form = document.getElementById('blood_form');
+  if(blood_form) {
+    blood_form.action = ' ';
+  }
+</script>
+
+{% endblock scripts %}

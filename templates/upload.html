@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+    <center>
+        <form class="row g-3" action="{% url 'upload' %}" method="post" style="margin-top:5rem;">
+            {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+            {% csrf_token %}
+            <div class="col-auto">
+                <input name="Financial_Year" class="form-control" placeholder="Enter Financial_Year">
+            </div>
+            <div class="col-auto">
+                <input name="Branch_Code" placeholder="Enter Branch_Code" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Sequence_1" placeholder="Enter Sequence_1" class="form-control" style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Sequence_2" placeholder="Enter Sequence_2" class="form-control" style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Donation_type" placeholder="Enter Donation_type" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Donor_Age" placeholder="Enter Donor_Age" class="form-control" style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Donation_Date" placeholder="Enter Donation_Date" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Gender" placeholder="Enter Gender" class="form-control" style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Blood_Group_Code" placeholder="Enter Blood_Group_Code" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Donor_Weight" placeholder="Enter Donor_Weight" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Donor_Temperature" placeholder="Enter Donor_Temperature" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Donor_Pulse" placeholder="Enter Donor_Pulse" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Donor_Hemoglobin" placeholder="Enter Donor_Hemoglobin" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Donor_Blood_Pressure" placeholder="Enter Donor_Blood_Pressure" class="form-control"
+                    style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Test_1" placeholder="Enter Test_1" class="form-control" style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Test_2" placeholder="Enter Test_2" class="form-control" style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Test_3" placeholder="Enter Test_3" class="form-control" style="text-align:center">
+            </div>
+            <div class="col-auto">
+                <input name="Test_4" placeholder="Enter Test_4" class="form-control" style="text-align:center">
+            </div><br>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Predict</button>
+            </div>
+
+        </form>
+    </center>
+
+
+
+
+</div>
+
+{% endblock %}

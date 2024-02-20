@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block title %}Raise Request | Hospital {% endblock%} {%block content %} {% include 'hospital/nav.html' %} {% load crispy_forms_tags %}
+
+<div class="row">
+  <div class="col" style="overflow-y: auto; height: 85vh">
+    <div class="row mb-2">
+      {% for b in bloods %}
+      <div class="col-3 mt-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Name : {{b.blood_bank.name}}</h5>
+            <p class="card-text">Location: {{b.blood_bank.location}}</p>
+            <p class="card-text">Units : {{b.units}} Unit(s)</p>
+            <p class="card-text">Blood Group : {{b.blood_group}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Raise Request</h5>
+        {% crispy form %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block title %}Beds Home | Hospital {% endblock %}
+{%block content %} {% include 'hospital/nav.html' %} {% load crispy_forms_tags%}
+
+<div class="row">
+  {% for bed in beds %}
+  <div class="col-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-text">Bed Id: {{ bed.id }}</div>
+        <div class="card-text">Bed Type: {{ bed.type }}</div>
+        {% if bed.occupied %}
+        <div class="card-text text-dark">Occupied</div>
+        {% else %}
+        <div class="card-text text-light">Free</div>
+        {% endif %}
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col text-end">
+            <a href="/hospital/update_bed/{{bed.id}}" class="btn btn-success">
+              <span class="material-symbols-outlined"> edit </span>
+            </a>
+          </div>
+          <div class="col text-start">
+            <a href="/hospital/delete_bed/{{bed.id}}" class="btn btn-danger">
+              <span class="material-symbols-outlined"> delete </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% if beds|length == 0 %}
+  <div class="text-center mt-5">
+    <div class="display-1">No Beds Found</div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

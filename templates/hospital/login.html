@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %}Login | Hospital {% endblock %}
+{%block content %} {% include 'main_nav.html' %} {% load crispy_forms_tags %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        {% if error %}
+        <div class="alert alert-danger">{{error}}</div>
+        {% endif %}
+        <h5 class="card-title">Login</h5>
+        <form method="POST" action="/hospital/login/">
+          {% csrf_token %}
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            placeholder="Email Here"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control mt-2 mb-2"
+            placeholder="Password Here"
+            required
+          />
+          <div class="row">
+            <div class="col">
+              <button type="submit" class="btn btn-primary ">Login</button>
+            </div>
+            <div class="col">
+                <a class="btn btn-link" href="/hospital/add_hospital">
+                    <span>Don't have account ? Register</span>
+                </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+{% endblock %}

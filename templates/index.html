@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block title %}Blood Bank{% endblock title %} {% block content %} {% include 'main_nav.html' %}
+
+<div class="row">
+  <div class="col-9">
+    <div class="card">
+      <img
+        src="https://img.freepik.com/free-vector/organic-flat-world-blood-donor-day-illustration_23-2148930105.jpg?w=2000"
+        alt="blood donation"
+        class="card-img-top"
+        height="500px"
+      />
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="jumbotron">
+      <h1 class="display-4">E-Blood Bank</h1>
+      <p class="lead">
+        E-Blood Bank is a web application that helps to connect blood banks with
+        hospitals which helps to save lives.
+      </p>
+      <hr class="my-4" />
+      <p>
+        It is a web application that helps to connect blood banks with
+        hospitals. where blood banks can register and hospitals can request for
+        blood.
+      </p>
+      <a class="btn btn-primary btn-lg" href="/hospital/login" role="button">Learn more</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block title %}Blood Home | BloodBank {% endblock %}
+{%block content %} {% include 'bank/nav.html' %} {% load crispy_forms_tags%}
+
+<div class="row">
+  {% for blood in bloods %}
+  <div class="col-3 mt-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-text">
+          Blood Group&nbsp&nbsp: &nbsp{{ blood.blood_group }}
+        </div>
+        <div class="card-text">
+          Blood Units&nbsp&nbsp: &nbsp{{ blood.units }} Units(s)
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col text-end">
+            <a href="/bank/update_blood/{{blood.id}}" class="btn btn-success">
+              <span class="material-symbols-outlined"> edit </span>
+            </a>
+          </div>
+          <div class="col text-start">
+            <a href="/bank/delete_blood/{{blood.id}}" class="btn btn-danger">
+              <span class="material-symbols-outlined"> delete </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% if bloods|length == 0 %}
+  <div class="text-center mt-5">
+    <div class="display-1">No Blood Data Found</div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

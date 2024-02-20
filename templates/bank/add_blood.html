@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block title %}Add Blood | Hospital {% endblock %}
+{%block content %} {% include 'bank/nav.html' %} {% load crispy_forms_tags %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Add Blood</h5>
+        {% crispy form %}
+      </div>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+{% endblock %}
