@@ -1,2 +1,2 @@
-# TK55018 - E-blood-bank
+E-blood-bank
 
