@@ -25,6 +25,7 @@ class Donor(models.Model):
     password = models.CharField(max_length=100)
     blood_group = models.CharField(
         max_length=100, choices=_BLOOD_GROUP_CHOICES)
+    address = models.CharField(max_length=500, null=True)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 

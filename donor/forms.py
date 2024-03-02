@@ -1,23 +1,10 @@
-
-
-from django.utils.timezone import now
-from django.forms.widgets import DateInput
-
-from django import forms
-
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
-
-# forms.py
-from django import forms
-from crispy_forms.helper import FormHelper
-from bank.models import State, City
-# from crispy_forms.layout import Layout, Row, Column, Submit
 from crispy_forms.layout import Layout, Div, Field, Submit
+from django import forms
+from django.forms.widgets import DateInput, Textarea
 from django.utils.timezone import now
-from django.forms.widgets import DateInput
 
-
+from bank.models import State, City
 from .models import Donor
 
 
@@ -25,6 +12,7 @@ class DonorForm(forms.ModelForm):
     # hide password field
     password = forms.CharField(widget=forms.PasswordInput)
     date_of_birth = forms.DateField(widget=DateInput(attrs={'type': 'date'}))
+    address = forms.CharField(widget=Textarea(attrs={'rows': 5}))
 
     class Meta:
         model = Donor

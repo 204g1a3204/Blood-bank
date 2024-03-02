@@ -1,8 +1,10 @@
-from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django import forms
+from django.forms.widgets import Textarea
 
-from . models import Hospital,Bed,BloodRequest
+from .models import Hospital, Bed, BloodRequest
+
 
 class HospitalForm(forms.ModelForm):
 
@@ -13,6 +15,7 @@ class HospitalForm(forms.ModelForm):
 
     # hide password field
     password = forms.CharField(widget=forms.PasswordInput)
+    address = forms.CharField(widget=Textarea(attrs={'rows': 5}))
 
     class Meta:
         model = Hospital

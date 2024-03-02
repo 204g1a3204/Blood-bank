@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 
 from bank.models import BloodBank,Blood, State, City
 from crispy_forms.layout import Layout, Div, Field, Submit
+from django.forms.widgets import Textarea
 
 
 class BloodBankForm(forms.ModelForm):
@@ -12,6 +13,7 @@ class BloodBankForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     state = forms.ModelChoiceField(queryset=State.objects.all(), required=True, label='State')
     city = forms.ModelChoiceField(queryset=City.objects.none(), required=True, label='City')
+    address = forms.CharField(widget=Textarea(attrs={'rows': 5}))
 
     class Meta:
         model = BloodBank
@@ -29,6 +31,7 @@ class BloodBankForm(forms.ModelForm):
             Div(Field('phone', css_class='form-control'), css_class='mb-3'),
             Div(Field('email', css_class='form-control'),css_class='mb-3'),
             Div(Field('password', css_class='form-control'), css_class='mb-3'),
+            Div(Field('address', css_class='form-control'), css_class='mb-3'),
             Div(Field('state', css_class='form-control', onchange="updateCities()"), css_class='mb-3'),
             Div(Field('city', css_class='form-control'), css_class='mb-3'),
             Div(Field('license', css_class='form-control'), css_class='mb-3'),

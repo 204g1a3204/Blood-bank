@@ -54,6 +54,7 @@ class BloodBank(models.Model):
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     license = models.CharField(max_length=100)
+    address = models.CharField(max_length=500, null=True)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="static/img/bloodbank/")
