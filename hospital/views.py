@@ -1,9 +1,7 @@
-from django.conf import settings
 from django.shortcuts import redirect, render
 from hospital.forms import HospitalForm, BedForm,BloodRequestForm
 from hospital.models import Bed,Hospital,BloodRequest
 from bank.models import Blood
-from Crypto.Cipher import AES
 
 _LOGIN_PAGE = 'hospital/login.html'
 _HOME_PAGE = 'hospital/home.html'

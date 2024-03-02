@@ -6,12 +6,36 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Register</h5>
+        <h5 class="card-title">Blood Bank Register</h5>
         {% crispy form %}
       </div>
     </div>
   </div>
   <div class="col"></div>
 </div>
+
+<script>
+  function updateCities() {
+            var stateSelect = document.getElementById('id_state');
+            var citySelect = document.getElementById('id_city');
+            var stateId = stateSelect.value;
+
+            // Clear existing city options
+            citySelect.innerHTML = '<option value="">---------</option>';
+
+            // Fetch cities for the selected state via AJAX
+            fetch('/bank/get_cities/' + stateId + '/')
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+                data.forEach(city => {
+                    var option = document.createElement('option');
+                    option.text = city.name;
+                    option.value = city.id;
+                    citySelect.add(option);
+                });
+            });
+        }
+</script>
 
 {% endblock %}

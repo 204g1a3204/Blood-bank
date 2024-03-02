@@ -1,0 +1,99 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% load crispy_forms_tags %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Blood Search</h5>
+        {% crispy form %}
+      </div>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+<div class="container">
+<!-- Search results will be displayed here -->
+    <h1>Blood Search Results</h1>
+    <table  class="table table-striped table-hover" id="search-results">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Blood Group</th>
+            <th>Phone</th>
+            <th>Email Address</th>
+            <!-- Add other relevant fields -->
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="5">No results for search criteria.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+  function updateCities() {
+            var stateSelect = document.getElementById('id_state');
+            var citySelect = document.getElementById('id_city');
+            var stateId = stateSelect.value;
+
+            // Clear existing city options
+            citySelect.innerHTML = '<option value="">---------</option>';
+
+            // Fetch cities for the selected state via AJAX
+            fetch('/bank/get_cities/' + stateId + '/')
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+                data.forEach(city => {
+                    var option = document.createElement('option');
+                    option.text = city.name;
+                    option.value = city.id;
+                    citySelect.add(option);
+                });
+            });
+        }
+
+  $(document).ready(function() {
+           $('#search-form').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+                var formData = $(this).serialize(); // Serialize form data
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url 'search-blood' %}',
+                    data: formData,
+                    success: function(response) {
+                        var newContent = ''; // Initialize new content
+                        response.forEach(function(row) {
+                            // Append new row to newContent for each donor
+                            newContent += `
+                                <tr>
+                                    <td>${row.name}</td>
+                                    <td>${row.type}</td>
+                                    <td>${row.blood_group}</td>
+                                    <td>${row.phone}</td>
+                                    <td>${row.email}</td>
+                                </tr>`;
+                        });
+
+                        if (!response.length) {
+                            newContent = `<tr><td colspan="5">No results for search criteria.</td><tr/>`
+                        }
+
+                        $('#search-results tbody').html(newContent);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error); // Log any errors
+                    }
+                });
+           });
+  });
+</script>
+
+

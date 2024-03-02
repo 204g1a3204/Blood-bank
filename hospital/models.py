@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from Crypto.Cipher import AES
+from bank.models import City, State
 
 _STATUS_CHOICES = (
     ('pending', 'Pending'),
@@ -34,11 +35,12 @@ _BED_TYPE_CHOICES = (
 
 class Hospital(models.Model):
     name = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     license = models.CharField(max_length=100)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="static/img/hospital/")
 
     def __str__(self):

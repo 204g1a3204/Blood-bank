@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from e_blood_bank.views import search_blood
 
 urlpatterns = [
     
@@ -13,4 +14,6 @@ urlpatterns = [
     path('requests/' , views.requests, name='bank_requests'),
     path('requests/update/<int:pk>/', views.update_request, name='update_request'),
     path('upload', views.upload, name='upload'),
+    path('get_cities/<int:state_id>/', views.get_cities, name='get_cities'),
+    path('search_blood/', search_blood, name='search-blood'),
 ]

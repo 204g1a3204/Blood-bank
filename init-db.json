@@ -1,0 +1,89 @@
+[
+    {"model": "bank.state", "pk": 1, "fields": {"name": "Andhra Pradesh"}},
+    {"model": "bank.state", "pk": 2, "fields": {"name": "Telangana"}}
+,
+    {"model": "bank.city", "pk": 1, "fields": {"state": 1, "name": "Ananthapur"}},
+    {"model": "bank.city", "pk": 2, "fields": {"state": 1, "name": "Kurnool"}},
+    {"model": "bank.city", "pk": 3, "fields": {"state": 2, "name": "Hyderabad"}},
+    {"model": "bank.city", "pk": 4, "fields": {"state": 2, "name": "Warangal"}},
+
+    {
+        "model": "bank.bloodbank", "pk": 1, "fields": {
+        "name": "Test Blood Centre",
+        "phone": 9000012345,
+        "email": "bank@gmail.com",
+        "password": "Test@123",
+        "license": "TB1021",
+        "state": 1,
+        "city": 1,
+        "image": "static/img/bloodbank/srit_logo.png"
+    }},
+    {
+        "model": "bank.bloodbank", "pk": 2, "fields": {
+        "name": "Sanjeevani Blood Centre",
+        "phone": 9000012345,
+        "email": "sanjeevani@gmail.com",
+        "password": "Test@123",
+        "license": "TB1022",
+        "state": 1,
+        "city": 1,
+        "image": "static/img/bloodbank/srit_logo.png"
+    }},
+
+    {"model": "bank.blood", "pk": 1, "fields": {"blood_group": "A+", "units": 2, "blood_bank": 1}},
+    {"model": "bank.blood", "pk": 2, "fields": {"blood_group": "B+", "units": 1, "blood_bank": 1}},
+    {"model": "bank.blood", "pk": 3, "fields": {"blood_group": "B+", "units": 5, "blood_bank": 2}},
+    {"model": "bank.blood", "pk": 4, "fields": {"blood_group": "A+", "units": 3, "blood_bank": 2}},
+
+    {
+        "model": "hospital.hospital", "pk": 1, "fields": {
+        "name": "Test hospital",
+        "phone": 9000012346,
+        "email": "hospital@gmail.com",
+        "password": "Test@123",
+        "license": "HT1022",
+        "state": 1,
+        "city": 1,
+        "image": "static/img/hospital/srit_logo.png"
+    }},
+    {
+        "model": "hospital.hospital",
+        "pk": 2,
+        "fields": {
+            "name": "Apollo hospital",
+            "phone": 9000012346,
+            "email": "apollo@gmail.com",
+            "password": "Test@123",
+            "license": "HT1023",
+            "state": 1,
+            "city": 1,
+            "image": "static/img/hospital/srit_logo.png"
+        }
+    },
+
+    {
+        "model": "donor.donor",
+        "pk": 1,
+        "fields":
+        {
+            "name": "Test Donor",
+            "phone": 9000012347,
+            "email": "donor@gmail.com",
+            "password": "Test@123",
+            "blood_group": "A+",
+            "state": 1,
+            "city": 1
+    }},
+    {
+        "model": "donor.donor",
+        "pk": 2,
+        "fields": {
+            "name": "Bhargavi",
+            "phone": 9000012347,
+            "email": "bhargavi@gmail.com",
+            "password": "Test@123",
+            "blood_group": "B+",
+            "state": 1,
+            "city": 1
+    }}
+]

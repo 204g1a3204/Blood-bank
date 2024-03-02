@@ -2,11 +2,9 @@ from django.shortcuts import render, redirect
 from bank.models import BloodBank, Blood
 from hospital.models import BloodRequest
 from bank.forms import BloodBankForm, BloodForm
-from Crypto.Cipher import AES
 from django.contrib import messages
-from django.conf import settings
-import os
-from PIL import Image
+from django.http import JsonResponse
+from bank.models import City
 
 
 _INDEX_PAGE = 'index.html'
@@ -48,6 +46,8 @@ def home(req):
 def add_bank(req):
     if req.method == 'POST':
         form = BloodBankForm(req.POST, req.FILES)
+        print(form.is_valid())
+        print(form.errors)
         if form.is_valid():
             form.save()
             return redirect('bank_login')
@@ -108,6 +108,9 @@ def update_request(req, pk):
     blood.save()
     return redirect('bank_requests')
 
+def get_cities(request, state_id):
+    cities = City.objects.filter(state_id=state_id).values('id', 'name')
+    return JsonResponse(list(cities), safe=False)
 
 
 import pickle

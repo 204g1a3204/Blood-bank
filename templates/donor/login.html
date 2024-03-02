@@ -9,8 +9,8 @@
         {% if error %}
         <div class="alert alert-danger">{{error}}</div>
         {% endif %}
-        <h5 class="card-title">Hospital Login</h5>
-        <form method="POST" action="/hospital/login/">
+        <h5 class="card-title">Donor Login</h5>
+        <form method="POST" action="/donor/login/">
           {% csrf_token %}
           <input
             type="email"
@@ -30,10 +30,10 @@
           />
           <div class="row">
             <div class="col">
-              <button type="submit" class="btn btn-primary ">Login</button>
+              <button type="submit" class="btn btn-primary">Login</button>
             </div>
             <div class="col">
-                <a class="btn btn-link" href="/hospital/add_hospital">
+                <a class="btn btn-link" href="/donor/add_donor">
                     <span>Don't have account ? Register</span>
                 </a>
             </div>

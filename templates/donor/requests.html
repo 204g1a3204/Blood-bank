@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block title %}Requests | Hospital {% endblock %}
+{%block content %} {% include 'bank/nav.html' %} {% load crispy_forms_tags%}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col-10">
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped table-hover">
+          <tr>
+            <th>Id</th>
+            <th>Hospital Name</th>
+            <th>Requested Blood Group</th>
+            <th>Requested Blood Units</th>
+            <th>Actions</th>
+          </tr>
+          {% for req in requests %}
+          <tr>
+            <td>{{req.id}}</td>
+            <td>{{req.hospital}}</td>
+            <td>{{req.blood_group}}</td>
+            <td>{{req.units}} Unit(s)</td>
+            {% if req.status == 'pending' %}
+            <td>
+              <a
+                href="/bank/requests/update/{{req.id}}?status=approved"
+                class="btn btn-danger"
+                >Accept</a
+              >
+              <a
+                href="/bank/requests/update/{{req.id}}?status=rejected"
+                class="btn btn-success"
+                >Reject</a
+              >
+            </td>
+            {% endif %} {% if req.status == 'approved' %}
+            <td>
+              <a href="#" class="btn btn-success disabled w-100">Accepted</a>
+            </td>
+            {% endif %} {% if req.status == 'rejected' %}
+            <td>
+              <a href="#" class="btn btn-danger disabled w-100">Rejected</a>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+{% endblock %}

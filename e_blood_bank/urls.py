@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/' , views.logout, name="logout"),
     path("bank/", include("bank.urls")),
     path("hospital/", include("hospital.urls")),
+    path("donor/", include("donor.urls")),
 ]
