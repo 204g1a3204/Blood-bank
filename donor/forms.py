@@ -1,3 +1,8 @@
+
+
+from django.utils.timezone import now
+from django.forms.widgets import DateInput
+
 from django import forms
 
 from crispy_forms.helper import FormHelper
@@ -9,6 +14,8 @@ from crispy_forms.helper import FormHelper
 from bank.models import State, City
 # from crispy_forms.layout import Layout, Row, Column, Submit
 from crispy_forms.layout import Layout, Div, Field, Submit
+from django.utils.timezone import now
+from django.forms.widgets import DateInput
 
 
 from .models import Donor
@@ -17,9 +24,11 @@ from .models import Donor
 class DonorForm(forms.ModelForm):
     # hide password field
     password = forms.CharField(widget=forms.PasswordInput)
+    date_of_birth = forms.DateField(widget=DateInput(attrs={'type': 'date'}))
 
     class Meta:
         model = Donor
+        fields = ['date_of_birth']
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
@@ -28,6 +37,14 @@ class DonorForm(forms.ModelForm):
         self.helper.form_method = 'post'
         self.helper.form_action = '/donor/add_donor/'
         self.helper.add_input(Submit('submit', 'Submit'))
+
+    def clean_date_of_birth(self):
+        dob = self.cleaned_data['date_of_birth']
+        age = now().year - dob.year - ((now().month, now().day) < (dob.month, dob.day))
+        if age < 18:
+            raise forms.ValidationError("You must be 18 years or older to register.")
+        return dob
+
 
 class BloodSearchForm(forms.Form):
 
@@ -67,6 +84,3 @@ class BloodSearchForm(forms.Form):
             Div(Field('blood_group', css_class='form-control'), css_class='col-md-6'),
             Submit('submit', 'Search', css_class='btn btn-primary mt-2')
         )
-
-
-

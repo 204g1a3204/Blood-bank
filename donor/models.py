@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.conf import settings
 from Crypto.Cipher import AES
@@ -19,6 +20,7 @@ _BLOOD_GROUP_CHOICES = (
 class Donor(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
+    date_of_birth = models.DateField(default=datetime.date(1900, 1, 1), null=True)
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     blood_group = models.CharField(
