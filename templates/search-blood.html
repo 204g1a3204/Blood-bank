@@ -26,12 +26,14 @@
             <th>Blood Group</th>
             <th>Phone</th>
             <th>Email Address</th>
+            <th>Address</th>
+            <th>Date Of Birth</th>
             <!-- Add other relevant fields -->
         </tr>
         </thead>
         <tbody>
             <tr>
-                <td colspan="5">No results for search criteria.</td>
+                <td colspan="7">No results for search criteria.</td>
             </tr>
         </tbody>
     </table>
@@ -79,6 +81,8 @@
                                     <td>${row.blood_group}</td>
                                     <td>${row.phone}</td>
                                     <td>${row.email}</td>
+                                    <td>${row.address ?? ''}</td>
+                                    <td>${row.date_of_birth == '1900-01-01' ? '' : row.date_of_birth ?? ''}</td>
                                 </tr>`;
                         });
 

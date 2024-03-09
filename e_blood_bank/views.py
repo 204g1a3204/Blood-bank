@@ -41,7 +41,9 @@ def search_blood(req):
 
             # queryset = Donor.objects.filter(Q(state_id=state_id) & Q(city_id=city_id) & Q(blood_group=blood_group))
             results = [{'name': donor.name, 'blood_group': donor.blood_group,
-                        'phone': donor.phone, 'email': donor.email, 'type': 'donor'} for donor in queryset]
+                        'phone': donor.phone, 'email': donor.email, 'type': 'donor',
+                        'address': donor.address,
+                        'date_of_birth': donor.date_of_birth} for donor in queryset]
 
             # queryset = Blood.objects.filter(Q(blood_bank__state_id=state_id) & Q(blood_bank__city_id=city_id))
             queryset = Blood.objects.filter(Q(blood_bank__state_id=state_id))
@@ -57,7 +59,8 @@ def search_blood(req):
 
             blood_banks = [{'name': b.blood_bank.name, 'blood_group': b.blood_group,
                             'phone': b.blood_bank.phone, 'email': b.blood_bank.email,
-                            'type': 'Blood Bank'} for b in queryset]
+                            'type': 'Blood Bank', 'address': b.blood_bank.address,
+                            'date_of_birth': ''} for b in queryset]
             print(blood_banks)
             results.extend(blood_banks)
 

@@ -5,9 +5,7 @@ from crispy_forms.layout import Layout, Div, Field, Submit
 from bank.models import State, City
 
 
-
 class BloodSearchForm(forms.Form):
-
     state = forms.ModelChoiceField(queryset=State.objects.all(), required=True, label='State')
     city = forms.ModelChoiceField(queryset=City.objects.none(), required=False, label='City')
     _BLOOD_GROUP_CHOICES = (
@@ -23,8 +21,8 @@ class BloodSearchForm(forms.Form):
     )
 
     blood_group = forms.ChoiceField(choices=_BLOOD_GROUP_CHOICES, required=False, label='Blood Group')
-    # blood_group = forms.MultipleChoiceField(choices=_BLOOD_GROUP_CHOICES, widget=forms.CheckboxSelectMultiple)
 
+    # blood_group = forms.MultipleChoiceField(choices=_BLOOD_GROUP_CHOICES, widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, *args, **kwargs):
         super(BloodSearchForm, self).__init__(*args, **kwargs)
@@ -46,4 +44,3 @@ class BloodSearchForm(forms.Form):
             Div(Field('blood_group', css_class='form-control'), css_class='col-md-6'),
             Submit('submit', 'Search', css_class='btn btn-primary mt-2')
         )
-

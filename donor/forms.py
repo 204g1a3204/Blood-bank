@@ -35,7 +35,6 @@ class DonorForm(forms.ModelForm):
 
 
 class BloodSearchForm(forms.Form):
-
     state = forms.ModelChoiceField(queryset=State.objects.all(), required=True, label='State')
     city = forms.ModelChoiceField(queryset=City.objects.none(), required=True, label='City')
     _BLOOD_GROUP_CHOICES = (
@@ -50,7 +49,6 @@ class BloodSearchForm(forms.Form):
     )
 
     blood_group = forms.ChoiceField(choices=_BLOOD_GROUP_CHOICES, required=False, label='Blood Group')
-
 
     def __init__(self, *args, **kwargs):
         super(BloodSearchForm, self).__init__(*args, **kwargs)
